@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            *{
+                text-align: center;
+                font-size: 40px;
+            }
+            a{
+                text-decoration: none;
+                line-height: 80px;
+                color: red;
+            }
+        </style>
+    </head>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <body>
+    </body>
+    <script>
+    $(function(){
+            var a=window.location.href.split("=")[1];
+            console.log(a);
+        if(a=="jj"){
+            $.ajax({
+                url:"http://localhost:3000/item/list",
+                type:"GET",
+                success:function(e){
+                    for(var i=0;i<e.length;i++){
+                        $('body').append("<a href='b.html?id="+e[i].id+"'>"+e[i].name+"</a><br>")
+                    }
+                }
+            })
+        }else{
+            $.ajax({
+                url:"http://localhost:3000/item/detail",
+                type:"POST",
+                data:{},
+                success:function(e){
+                    $('body').append("<p>"+e[a-1].details+"</p>")
+                }
+            })
+        }
+
+    })
+
+    </script>
+
+</html>
